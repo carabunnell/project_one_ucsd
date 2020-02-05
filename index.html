@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .buttons{
+    position: relative;
+    background-color: slategrey;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 40px;
+}
+
+#filler{
+    width: 75%;
+    margin-left: 12.5%;
+    height: 300px;
+}
+
+#translate{
+    float: right;
+    margin-right: 50%;
+}
+
+#language{
+    padding: 10px;
+    margin-left: 30px;
+}
+
+.interact{
+    width: 50%;
+    margin-left: 25%;
+    /* text-align: center; */
+}
+
+.container{
+    background-color: white;
+    width: 50%;
+    margin-left: 25%;
+    height: 100%;
+}
+
+body{
+    /* background-color: green; */
+}
+
+#interact{
+    background-color: white;
+}
+
+#yourtext{
+    position: relative;
+    margin-left: 30px;
+}
+
+#response{
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+}
+</style>
+<body>
+    <div class="container">
+
+        <image src="https://developer.gnome.org/gtk3/stable/headerbar.png" id="filler"></image>
+
+        <div class="container2">
+            
+            <div class="interact">
+                <button class="buttons">Your Text</button>
+                <div class="ui input error">
+                    <input type="text" placeholder="Your text..." id="yourtext">
+                  </div>
+            </div>
+            <div class="interact">
+                <button class="buttons">Language</button>
+                    <div class="ui basic floating dropdown button" id="language">
+                      <div class="text">This Page</div>
+                      <i class="dropdown icon"></i>
+                      <div class="menu">
+                        <div class="item">This Organization</div>
+                        <div class="item">Entire Site</div>
+                      </div>
+                    </div>
+                  </div>
+            </div> 
+            <div id="interact">
+                <button class="buttons" id="translate">Translate</button>
+            </div>
+            <!-- <div>
+                <p placeholder="Translation" id="response"></p>
+            </div> -->
+         </div>
+    </div>
+</body>
+</html>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+
+            $(document).ready(function(){
+                $("#translate").on("click", function() {
+                     var userInput = $("#yourtext").val(); //or .html() /// on click of the input.
+
+
+                    // var userInput = prompt("sentence:");
+
+            // var queryURL = "dothraki.p.rapidapi.com" + userInput + "f14b75ccd4msh0f111102ae02ed1p12818bjsn7f3dca89ed3e";
+            var queryURL = "https://dothraki.p.rapidapi.com/dothraki.json?text=" + userInput
+	
+            $.ajax({
+                url: queryURL,
+                method: "POST",
+	            headers : {
+                    "x-rapidapi-host": "dothraki.p.rapidapi.com",
+                    "x-rapidapi-key": "f14b75ccd4msh0f111102ae02ed1p12818bjsn7f3dca89ed3e",
+                    "content-type": "application/x-www-form-urlencoded"
+                }
+            }).then(function (response) {
+                // console.log('response: ' + JSON.stringify(response))
+                //empty div
+                // create new div
+                var newDiv = $("<div>");
+                newDiv.text(JSON.stringify(response.contents.translated));
+                // newDiv.addClass("_____"); // give it a class
+                $(".#interact").append(newDiv);
+                // console.log('response: ' + JSON.stringify(response.contents.translated));
+            });
+    
+                });
+ 
+
+            });
+
+            
+
+    </script>
+</body>
+
+</html>
