@@ -21,10 +21,23 @@
             <!-- <button>Your Text</button> -->
             <span><input id="yourtext" type="text" placeholder="Your text..."></span>
             <!--language select and translate button-->
-                <input type="text" placeholder="Your selected language"></div>
+                <!--Select a language-->
+                <!-- <div><button>Select Language</button> -->
+                    <!-- <input type="text" placeholder="Your selected language"></div> -->
+                    <select id="dropDown" class="user-choice" value="choice">
+                        <option>Select</option>
+                        <option value="Dothraki">Dothraki</option>
+                        <option value="Elvish">Elvish</option>
+                        <option value="Valley Girl">Valley Girl</option>
+                        <option value="Sith">Sith</option>
+                        <option value="example1">Ex1</option>
+                        <option value="example1">Ex1</option>
+                        <option value="example1">Ex1</option>
+                    </select></div>
                 <div>
                     <button class="buttons" id="translate-dothraki">Translate To Dothraki</button>
                     <button class="buttons" id="translate-elvish">Translate to Elvish (Sindarin)</button>
+                    <button class="buttons" id="translate-all">Translate</button>
                 <h3>Your Translation: </h3>
                 <div class="translated-output"></div>
 
@@ -47,6 +60,98 @@
 
 
     $(document).ready(function () {
+        $("#translate-all").on("click", function() {
+            var userInput = $("#yourtext").val();
+            var languageChoice = $(".user-choice").val();
+            console.log(languageChoice);
+
+            // ajaxtranslate("https://elvish.p.rapidapi.com/sindarin.json?text=", userInput, "elvish.p.rapidapi.com");
+
+            if (languageChoice === "Elvish") {
+                console.log("we did it!");
+                ajaxtranslate("https://elvish.p.rapidapi.com/sindarin.json?text=", userInput, "elvish.p.rapidapi.com");
+            }
+            else if (languageChoice === "Valley Girl") {
+                console.log("we did it!");
+                ajaxtranslate("https://valspeak.p.rapidapi.com/valspeak.json?text=", userInput, "valspeak.p.rapidapi.com");
+            }
+            else if (languageChoice === "Sith")
+                console.log("we did it!");
+                ajaxtranslateSith("https://sith.p.rapidapi.com/sith.json?text=", userInput, "sith.p.rapidapi.com");
+                
+            function ajaxtranslate(queryURL, userInput, xhost) {
+            var queryURL2 = queryURL + userInput;
+            console.log("queryURL2: " + queryURL);
+            console.log("userInput: " + userInput);
+            console.log("xhost: " + xhost);
+
+            $.ajax({
+                url: queryURL2,
+                method: "POST",
+                headers: {
+                    "x-rapidapi-host": xhost,
+                    "x-rapidapi-key": "f14b75ccd4msh0f111102ae02ed1p12818bjsn7f3dca89ed3e",
+                    "content-type": "application/x-www-form-urlencoded"
+                } 
+            }).then(function(response) {
+                var newDiv = $("<div>");
+                newDiv.text(JSON.stringify(response.contents.translated));
+                // newDiv.addClass("_____"); // give it a class
+                $(".translated-output").append(newDiv);
+                console.log('response-one: ' + JSON.stringify(response.contents.translated));
+            });
+        }
+
+        function ajaxtranslateSith(queryURL, userInput, xhost) {
+            var queryURL2 = queryURL + userInput;
+            console.log("queryURL2: " + queryURL);
+            console.log("userInput: " + userInput);
+            console.log("xhost: " + xhost);
+
+            $.ajax({
+                url: queryURL2,
+                method: "GET",
+                headers: {
+                    "x-rapidapi-host": xhost,
+                    "x-rapidapi-key": "f14b75ccd4msh0f111102ae02ed1p12818bjsn7f3dca89ed3e",
+                    // "content-type": "application/x-www-form-urlencoded"
+                } 
+            }).then(function(response) {
+                var newDiv = $("<div>");
+                newDiv.text(JSON.stringify(response.contents.translated));
+                // newDiv.addClass("_____"); // give it a class
+                $(".translated-output").append(newDiv);
+                console.log('response-one: ' + JSON.stringify(response.contents.translated));
+            });
+        }
+               
+        });
+        
+        // function ajaxtranslate(queryURL, userInput, xhost) {
+        //     var queryURL2 = queryURL + userInput;
+        //     console.log("queryURL2: " + queryURL);
+        //     console.log("userInput: " + userInput);
+        //     console.log("xhost: " + xhost);
+
+        //     $.ajax({
+        //         url: queryURL2,
+        //         method: "POST",
+        //         headers: {
+        //             "x-rapidapi-host": xhost,
+        //             "x-rapidapi-key": "f14b75ccd4msh0f111102ae02ed1p12818bjsn7f3dca89ed3e",
+        //             "content-type": "application/x-www-form-urlencoded"
+        //         } 
+        //     }).then(function(response) {
+        //         var newDiv = $("<div>");
+        //         newDiv.text(JSON.stringify(response.contents.translated));
+        //         // newDiv.addClass("_____"); // give it a class
+        //         $(".translated-output").append(newDiv);
+        //         console.log('response-one: ' + JSON.stringify(response.contents.translated));
+        //     });
+        // }
+
+
+//================================================================not needed=================================
         $("#translate-dothraki").on("click", function () {
             var userInput = $("#yourtext").val(); //or .html() /// on click of the input.
 
@@ -91,7 +196,7 @@
                 }
             }).then(function (response) {
                 console.log('response: ' + JSON.stringify(response.contents.translated))
-                //empty div
+                $(".translated-output").empty();
                 // create new div
                 var newDiv = $("<div>");
                 newDiv.text(JSON.stringify(response.contents.translated));
@@ -99,10 +204,7 @@
                 $(".translated-output").append(newDiv);
                 console.log('response: ' + JSON.stringify(response.contents.translated));
             });
-
         });
-
-
     });
 
 
