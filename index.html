@@ -75,9 +75,11 @@
                 console.log("we did it!");
                 ajaxtranslate("https://valspeak.p.rapidapi.com/valspeak.json?text=", userInput, "valspeak.p.rapidapi.com");
             }
-            else if (languageChoice === "Sith")
+            else if (languageChoice === "Sith") {
                 console.log("we did it!");
                 ajaxtranslateSith("https://sith.p.rapidapi.com/sith.json?text=", userInput, "sith.p.rapidapi.com");
+            }
+        
                 
             function ajaxtranslate(queryURL, userInput, xhost) {
             var queryURL2 = queryURL + userInput;
