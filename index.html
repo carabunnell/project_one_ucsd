@@ -35,8 +35,8 @@
                         <option value="example1">Ex1</option>
                     </select></div>
                 <div>
-                    <button class="buttons" id="translate-dothraki">Translate To Dothraki</button>
-                    <button class="buttons" id="translate-elvish">Translate to Elvish (Sindarin)</button>
+                    <!-- <button class="buttons" id="translate-dothraki">Translate To Dothraki</button>
+                    <button class="buttons" id="translate-elvish">Translate to Elvish (Sindarin)</button> -->
                     <button class="buttons" id="translate-all">Translate</button>
                 <h3>Your Translation: </h3>
                 <div class="translated-output"></div>
@@ -94,6 +94,7 @@
                     "content-type": "application/x-www-form-urlencoded"
                 } 
             }).then(function(response) {
+                $(".translated-output").empty();
                 var newDiv = $("<div>");
                 newDiv.text(JSON.stringify(response.contents.translated));
                 // newDiv.addClass("_____"); // give it a class
@@ -117,6 +118,7 @@
                     // "content-type": "application/x-www-form-urlencoded"
                 } 
             }).then(function(response) {
+                $(".translated-output").empty();
                 var newDiv = $("<div>");
                 newDiv.text(JSON.stringify(response.contents.translated));
                 // newDiv.addClass("_____"); // give it a class
@@ -126,85 +128,7 @@
         }
                
         });
-        
-        // function ajaxtranslate(queryURL, userInput, xhost) {
-        //     var queryURL2 = queryURL + userInput;
-        //     console.log("queryURL2: " + queryURL);
-        //     console.log("userInput: " + userInput);
-        //     console.log("xhost: " + xhost);
-
-        //     $.ajax({
-        //         url: queryURL2,
-        //         method: "POST",
-        //         headers: {
-        //             "x-rapidapi-host": xhost,
-        //             "x-rapidapi-key": "f14b75ccd4msh0f111102ae02ed1p12818bjsn7f3dca89ed3e",
-        //             "content-type": "application/x-www-form-urlencoded"
-        //         } 
-        //     }).then(function(response) {
-        //         var newDiv = $("<div>");
-        //         newDiv.text(JSON.stringify(response.contents.translated));
-        //         // newDiv.addClass("_____"); // give it a class
-        //         $(".translated-output").append(newDiv);
-        //         console.log('response-one: ' + JSON.stringify(response.contents.translated));
-        //     });
-        // }
-
-
-//================================================================not needed=================================
-        $("#translate-dothraki").on("click", function () {
-            var userInput = $("#yourtext").val(); //or .html() /// on click of the input.
-
-
-            // var userInput = prompt("sentence:");
-
-            // var queryURL = "dothraki.p.rapidapi.com" + userInput + "f14b75ccd4msh0f111102ae02ed1p12818bjsn7f3dca89ed3e";
-            var queryURL = "https://dothraki.p.rapidapi.com/dothraki.json?text=" + userInput;
-
-            $.ajax({
-                url: queryURL,
-                method: "POST",
-                headers: {
-                    "x-rapidapi-host": "dothraki.p.rapidapi.com",
-                    "x-rapidapi-key": "f14b75ccd4msh0f111102ae02ed1p12818bjsn7f3dca89ed3e",
-                    "content-type": "application/x-www-form-urlencoded"
-                }
-            }).then(function (response) {
-                console.log('response: ' + JSON.stringify(response.contents.translated))
-                //empty div
-                // create new div
-                var newDiv = $("<div>");
-                newDiv.text(JSON.stringify(response.contents.translated));
-                // newDiv.addClass("_____"); // give it a class
-                $(".translated-output").append(newDiv);
-                console.log('response: ' + JSON.stringify(response.contents.translated));
-            });
-
-        });
-        $("#translate-elvish").on("click", function () {
-            var userInput = $("#yourtext").val(); //or .html() /// on click of the input.
-
-            var queryURL = "https://elvish.p.rapidapi.com/sindarin.json?text=" + userInput;
-
-            $.ajax({
-                url: queryURL,
-                method: "POST",
-                headers: {
-                    "x-rapidapi-host": "elvish.p.rapidapi.com",
-                    "x-rapidapi-key": "f14b75ccd4msh0f111102ae02ed1p12818bjsn7f3dca89ed3e",
-                    "content-type": "application/x-www-form-urlencoded"
-                }
-            }).then(function (response) {
-                console.log('response: ' + JSON.stringify(response.contents.translated))
-                $(".translated-output").empty();
-                // create new div
-                var newDiv = $("<div>");
-                newDiv.text(JSON.stringify(response.contents.translated));
-                // newDiv.addClass("_____"); // give it a class
-                $(".translated-output").append(newDiv);
-                console.log('response: ' + JSON.stringify(response.contents.translated));
-            });
-        });
+    
     });
 
 
