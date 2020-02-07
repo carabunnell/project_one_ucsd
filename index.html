@@ -4,146 +4,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Talk Geeky To Me</title>
+    <link href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky|Lexend+Deca&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+
 </head>
-<style>
-    .buttons{
-    position: relative;
-    background-color: slategrey;
-    padding: 10px;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    margin-top: 40px;
-}
 
-#filler{
-    width: 75%;
-    margin-left: 12.5%;
-    height: 300px;
-}
-
-#translate{
-    float: right;
-    margin-right: 50%;
-}
-
-#language{
-    padding: 10px;
-    margin-left: 30px;
-}
-
-.interact{
-    width: 50%;
-    margin-left: 25%;
-    /* text-align: center; */
-}
-
-.container{
-    background-color: white;
-    width: 50%;
-    margin-left: 25%;
-    height: 100%;
-}
-
-body{
-    /* background-color: green; */
-}
-
-#interact{
-    background-color: white;
-}
-
-#yourtext{
-    position: relative;
-    margin-left: 30px;
-}
-
-#response{
-    border-style: solid;
-    border-color: black;
-    border-width: 5px;
-}
-</style>
 <body>
-    <div class="container">
+ <div style="background-image: url(assets/images/elvish.png)" class="body">
+<image class="img-logo" src="assets/images/logo.png" alt="logo">
 
-        <image src="https://developer.gnome.org/gtk3/stable/headerbar.png" id="filler"></image>
+    <div class="wrapper">
+        <article class="img-info">
+            <h1>Geeky Language Translator</h1>
+            <!-- <button>Your Text</button> -->
+            <span><input id="yourtext" type="text" placeholder="Your text..."></span>
+            <!--language select and translate button-->
+                <input type="text" placeholder="Your selected language"></div>
+                <div>
+                    <button class="buttons" id="translate-dothraki">Translate To Dothraki</button>
+                    <button class="buttons" id="translate-elvish">Translate to Elvish (Sindarin)</button>
+                <h3>Your Translation: </h3>
+                <div class="translated-output"></div>
 
-        <div class="container2">
-            
-            <div class="interact">
-                <button class="buttons">Your Text</button>
-                <div class="ui input error">
-                    <input type="text" placeholder="Your text..." id="yourtext">
-                  </div>
-            </div>
-            <div class="interact">
-                <button class="buttons">Language</button>
-                    <div class="ui basic floating dropdown button" id="language">
-                      <div class="text">This Page</div>
-                      <i class="dropdown icon"></i>
-                      <div class="menu">
-                        <div class="item">This Organization</div>
-                        <div class="item">Entire Site</div>
-                      </div>
-                    </div>
-                  </div>
-            </div> 
-            <div id="interact">
-                <button class="buttons" id="translate">Translate</button>
-            </div>
-            <!-- <div>
-                <p placeholder="Translation" id="response"></p>
-            </div> -->
-         </div>
+            <!-- <input class="interact" style="width: 95%; height: 300px;"> -->
+        </article>
+        <img class="img-child" src="assets/images/child.png" alt="baby geeky child">
     </div>
-</body>
-</html>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>
 
 
-            $(document).ready(function(){
-                $("#translate").on("click", function() {
-                     var userInput = $("#yourtext").val(); //or .html() /// on click of the input.
+    <footer>
+        <h5>Copyright &#169; 2020 UCSD Extension Talk Geeky To Me Gang</h5>
+
+        </div>
+    </footer>
+    </div>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
 
 
-                    // var userInput = prompt("sentence:");
+    $(document).ready(function () {
+        $("#translate-dothraki").on("click", function () {
+            var userInput = $("#yourtext").val(); //or .html() /// on click of the input.
+
+
+            // var userInput = prompt("sentence:");
 
             // var queryURL = "dothraki.p.rapidapi.com" + userInput + "f14b75ccd4msh0f111102ae02ed1p12818bjsn7f3dca89ed3e";
-            var queryURL = "https://dothraki.p.rapidapi.com/dothraki.json?text=" + userInput
-	
+            var queryURL = "https://dothraki.p.rapidapi.com/dothraki.json?text=" + userInput;
+
             $.ajax({
                 url: queryURL,
                 method: "POST",
-	            headers : {
+                headers: {
                     "x-rapidapi-host": "dothraki.p.rapidapi.com",
                     "x-rapidapi-key": "f14b75ccd4msh0f111102ae02ed1p12818bjsn7f3dca89ed3e",
                     "content-type": "application/x-www-form-urlencoded"
                 }
             }).then(function (response) {
-                // console.log('response: ' + JSON.stringify(response))
+                console.log('response: ' + JSON.stringify(response.contents.translated))
                 //empty div
                 // create new div
                 var newDiv = $("<div>");
                 newDiv.text(JSON.stringify(response.contents.translated));
                 // newDiv.addClass("_____"); // give it a class
-                $(".#interact").append(newDiv);
-                // console.log('response: ' + JSON.stringify(response.contents.translated));
-            });
-    
-                });
- 
-
+                $(".translated-output").append(newDiv);
+                console.log('response: ' + JSON.stringify(response.contents.translated));
             });
 
-            
+        });
+        $("#translate-elvish").on("click", function () {
+            var userInput = $("#yourtext").val(); //or .html() /// on click of the input.
 
-    </script>
+            var queryURL = "https://elvish.p.rapidapi.com/sindarin.json?text=" + userInput;
+
+            $.ajax({
+                url: queryURL,
+                method: "POST",
+                headers: {
+                    "x-rapidapi-host": "elvish.p.rapidapi.com",
+                    "x-rapidapi-key": "f14b75ccd4msh0f111102ae02ed1p12818bjsn7f3dca89ed3e",
+                    "content-type": "application/x-www-form-urlencoded"
+                }
+            }).then(function (response) {
+                console.log('response: ' + JSON.stringify(response.contents.translated))
+                //empty div
+                // create new div
+                var newDiv = $("<div>");
+                newDiv.text(JSON.stringify(response.contents.translated));
+                // newDiv.addClass("_____"); // give it a class
+                $(".translated-output").append(newDiv);
+                console.log('response: ' + JSON.stringify(response.contents.translated));
+            });
+
+        });
+
+
+    });
+
+
+</script>
 </body>
 
 </html>

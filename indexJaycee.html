@@ -7,23 +7,28 @@
     <title>Talk Geeky To Me</title>
     <link href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky|Lexend+Deca&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet type=text/css" href="lang.css">
+    <!-- <link rel="stylesheet type=text/css" href="lang.css"> -->
 
 </head>
 
-<body></body>
+<body>
  <div style="background-image: url(elvish.png)" class="body">
 <image class="img-logo" src="logo.png" alt="logo">
 
     <div class="wrapper">
         <article class="img-info">
             <h1>Geeky Language Translator</h1>
-            <button>Your Text</button>
-            <span><input type="text" placeholder="Your text..."></span>
-            <div><button>Language Select</button>
+            <!-- <button>Your Text</button> -->
+            <span><input id="yourtext" type="text" placeholder="Your text..."></span>
+            <!--language select and translate button-->
                 <input type="text" placeholder="Your selected language"></div>
-            <h3>Your Translation:</h3>
-            <input class="interact" style="width: 95%; height: 300px;">
+                <div>
+                    <button class="buttons" id="translate-dothraki">Translate To Dothraki</button>
+                    <button class="buttons" id="translate-elvish">Translate to Elvish (Sindarin)</button>
+                <h3>Your Translation: </h3>
+                <div class="translated-output"></div>
+
+            <!-- <input class="interact" style="width: 95%; height: 300px;"> -->
         </article>
         <img class="img-child" src="child.png" alt="baby geeky child">
     </div>
@@ -76,3 +81,5 @@
 
     });
 </script>
+
+
