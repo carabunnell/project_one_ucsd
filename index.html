@@ -9,6 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="assets/style.css">
 
+    
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 
 <body>
@@ -24,7 +29,7 @@
                 <!--Select a language-->
                 <!-- <div><button>Select Language</button> -->
                     <!-- <input type="text" placeholder="Your selected language"></div> -->
-                    <select id="dropDown" class="user-choice" value="choice">
+                    <select id="dropDown" data-target="dropdown2" class="btn dropdown-trigger user-choice" value="choice">
                         <option>Select</option>
                         <option value="Dothraki">Dothraki</option>
                         <option value="Elvish">Elvish</option>
@@ -98,6 +103,7 @@
             }).then(function(response) {
                 $(".translated-output").empty();
                 var newDiv = $("<div>");
+                newDiv.addClass("translate-box");
                 newDiv.text(JSON.stringify(response.contents.translated));
                 // newDiv.addClass("_____"); // give it a class
                 $(".translated-output").append(newDiv);
@@ -122,6 +128,7 @@
             }).then(function(response) {
                 $(".translated-output").empty();
                 var newDiv = $("<div>");
+                newDiv.addClass("translate-box");
                 newDiv.text(JSON.stringify(response.contents.translated));
                 // newDiv.addClass("_____"); // give it a class
                 $(".translated-output").append(newDiv);
