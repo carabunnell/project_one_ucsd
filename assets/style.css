@@ -2,8 +2,13 @@
     width: 100%;
     padding: 10px;
 }
+
 .img-logo {
     display: none;
+    /* height: 50px;
+    width: auto;
+    /* max-width: 600px;
+    height: auto; */ 
 }
 .body {
     width: 100%;
