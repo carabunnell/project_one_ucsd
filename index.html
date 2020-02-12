@@ -40,7 +40,7 @@
                         <option value="Sith">Sith</option>
                         <option value="Yodish">Yodish</option>
                         <option value="Valyrian">Valyrian</option>
-                        <option value="example1">Ex1</option>
+                        <!-- <option value="example1">Ex1</option> -->
                     </select>
             </div>
             <div>
@@ -50,6 +50,8 @@
                 <h3>Your Translation: </h3>
                 <div class="translated-output"></div>
 
+                <button class="buttons fbsharelink" id="translate-all" data-shareurl="YOURLINK">Share on Facebook</button>
+
                 <!-- <input class="interact" style="width: 95%; height: 300px;"> -->
                 </article>
                 <img class="img-child" src="assets/images/child.png" alt="baby geeky child">
@@ -58,6 +60,8 @@
 
             <footer>
                 <h5>Copyright &#169; 2020 UCSD Extension Talk Geeky To Me Gang</h5>
+                <button onClick="fbshareCurrentPage()" target="_blank" alt="Share on Facebook">Facebook</button>
+
 
     </div>
     </footer>
@@ -65,6 +69,12 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script language="javascript">
+        function fbshareCurrentPage()
+        {window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(window.location.href)+"&t="+document.title, '', 
+        'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+        return false; }
+    </script>
     <script>
 
 
@@ -152,12 +162,12 @@
 
             // <a class="fbsharelink" data-shareurl="YOURLINK">Facebook</a>
 
-            // $('.fbsharelink').click(function () {
-            //     var shareurl = $(this).data('shareurl');
-            //     window.open('https://www.facebook.com/sharer/sharer.php?u=' + escape(shareurl) + '&t=' + document.title, '',
-            //         'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
-            //     return false;
-            // });
+            $(".fbsharelink").on("click", function () {
+                var shareurl = document.URL;
+                window.open('https://www.facebook.com/sharer/sharer.php?u=' + escape(shareurl) + '&t=' + document.title, '',
+                    'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+                // return false;
+            });
 
         });
 
