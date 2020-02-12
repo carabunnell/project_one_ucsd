@@ -44,15 +44,15 @@
                     </select>
             </div>
             <div>
-                <!-- <button class="buttons" id="translate-dothraki">Translate To Dothraki</button>
-                    <button class="buttons" id="translate-elvish">Translate to Elvish (Sindarin)</button> -->
+                
                 <button class="buttons" id="translate-all">Translate</button>
                 <h3>Your Translation: </h3>
                 <div class="translated-output"></div>
 
-                <button class="buttons fbsharelink" id="translate-all" data-shareurl="YOURLINK">Share on Facebook</button>
+                <!--button to tweet but I can't figure out how to make it look good:(-->
+                <button class="buttons"><a class="buttons twittersharelink" target="_blank">Tweet</a></button>
 
-                <!-- <input class="interact" style="width: 95%; height: 300px;"> -->
+               
                 </article>
                 <img class="img-child" src="assets/images/child.png" alt="baby geeky child">
             </div>
@@ -60,7 +60,7 @@
 
             <footer>
                 <h5>Copyright &#169; 2020 UCSD Extension Talk Geeky To Me Gang</h5>
-                <button onClick="fbshareCurrentPage()" target="_blank" alt="Share on Facebook">Facebook</button>
+                
 
 
     </div>
@@ -69,15 +69,10 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script language="javascript">
-        function fbshareCurrentPage()
-        {window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(window.location.href)+"&t="+document.title, '', 
-        'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
-        return false; }
-    </script>
+   
     <script>
 
-
+        var translatedOutput;
         $(document).ready(function () {
             $("#translate-all").on("click", function () {
                 var userInput = $("#yourtext").val();
@@ -105,7 +100,7 @@
                 else if (languageChoice === "Valyrian") {
                     ajaxtranslate("https://valyrian.p.rapidapi.com/valyrian.json?text=", userInput, "valyrian.p.rapidapi.com")
                 }
-                // else if (languageChoice === "")
+                
 
 
                 function ajaxtranslate(queryURL, userInput, xhost) {
@@ -130,6 +125,7 @@
                         // newDiv.addClass("_____"); // give it a class
                         $(".translated-output").append(newDiv);
                         console.log('response-one: ' + JSON.stringify(response.contents.translated));
+                        translatedOutput = JSON.stringify(response.contents.translated);
                     });
                 }
 
@@ -155,18 +151,16 @@
                         // newDiv.addClass("_____"); // give it a class
                         $(".translated-output").append(newDiv);
                         console.log('response-one: ' + JSON.stringify(response.contents.translated));
+                        translatedOutput = JSON.stringify(response.contents.translated);
                     });
                 }
 
             });
 
-            // <a class="fbsharelink" data-shareurl="YOURLINK">Facebook</a>
+         
 
-            $(".fbsharelink").on("click", function () {
-                var shareurl = document.URL;
-                window.open('https://www.facebook.com/sharer/sharer.php?u=' + escape(shareurl) + '&t=' + document.title, '',
-                    'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
-                // return false;
+            $(".twittersharelink").on("click", function () {
+                    $(".twittersharelink").attr("href", "https://twitter.com/intent/tweet?text=" + translatedOutput);
             });
 
         });
