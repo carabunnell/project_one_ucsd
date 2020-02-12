@@ -44,23 +44,96 @@
                     </select>
             </div>
             <div>
-                
+
                 <button class="buttons" id="translate-all">Translate</button>
                 <h3>Your Translation: </h3>
                 <div class="translated-output"></div>
 
-                
-                <button id="tweet"><a class="buttons twittersharelink" target="_blank" id="tweet-tweet">Tweet</a></button>
 
-               
+                <button id="tweet"><a class="buttons twittersharelink" target="_blank"
+                        id="tweet-tweet">Tweet</a></button>
+
+
                 </article>
                 <img id=yodaImage class="img-child" src="assets/images/child.png" alt="baby geeky child">
             </div>
 
+            <ul class="collapsible popout">
+                <li>
+                    <div class="collapsible-header"><img src="./assets/images/wizard.png" class="elf-icon" alt="">About
+                        The Elves:
+                    </div>
+                    <div class="collapsible-body"><span>The Elves, who called themselves the Quendi, and who in lore are
+                            commonly
+                            referred to as the Eldar (adj. Eldarin), were the first and eldest of the Children of
+                            Ilúvatar, and are
+                            considered to be the fairest and wisest of any race of Arda given sapience.</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><img src="./assets/images/sith.png" class="sith-icon" alt="">About
+                        the Sith:
+                    </div>
+                    <div class="collapsible-body"><span>The Sith, also referred to as the Sith Order, was an ancient
+                            religious order
+                            of Force-wielders devoted to the dark side of the Force. Driven by their emotions, including
+                            hate, anger, and
+                            greed, the Sith were deceptive and obsessed with gaining power no matter the cost. The order
+                            reached the apex
+                            of its power under Darth Sidious, the Dark Lord of the Sith who achieved his order's goal of
+                            galactic conquest
+                            after a millennium of plotting. Within a generation, however, the death of Darth Vader would
+                            mark the end of
+                            the order of Sith Lords..</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><img src="./assets/images/icons8-targaryen-house-30.png"
+                            class="targ-icon" alt="">About Valyrian</div>
+                    <div class="collapsible-body"><span>The Valyrians, also known as the Blood of Old Valyria or Blood
+                            of the Dragon,
+                            are a people and culture native to the Valyrian Peninsula, on the continent of Essos. For
+                            thousands of years,
+                            their empire, known as the Valyrian Freehold, was the dominant civilization on the
+                            continent. Roughly four
+                            hundred years prior to the War of the Five Kings, a cataclysmic event known as "the Doom"
+                            shattered the
+                            Valyrians' capital city and all but obliterated them.</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><img src="./assets/images/horse.png" class="horse-icon" alt="">About
+                        The Dothraki:
+                    </div>
+                    <div class="collapsible-body"><span>The Dothraki are a race of nomadic horse-mounted warriors in
+                            Essos, the continent to the east of Westeros across the Narrow Sea. They inhabit the vast
+                            central plains of Essos, known as the Dothraki sea. Their bond with horses is such that
+                            Dothraki are said to be born, fight, and die in the saddle.</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><img src="./assets/images/icons8-princess-48.png"
+                            class="valley-icon" alt="">About Valley girls:
+                    </div>
+                    <div class="collapsible-body"><span>Valley girl is a socioeconomic stereotype depicting a class of
+                            women characterized by the colloquial California English dialect Valleyspeak and
+                            materialism.
+                            Originally referring to upper-middle-class girls from the Los Angeles commuter communities
+                            of the San Fernando Valley during the 1980s,[1]
+                            the term in later years became more broadly applied to any female in the United States who
+                            embodied ditziness, airheadedness, or greater interest in conspicuous consumption than
+                            intellectual or personal accomplishment.</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><img src="./assets/images/icons8-yoda-48.png" class=yoda-icon
+                            alt="">About Yoda's species:
+                    </div>
+                    <div class="collapsible-body"><span>The Jedi Master Yoda was the best-known member of a species
+                            whose true name is not recorded. Known in some sources simply as Yoda's species, this
+                            species of small carnivorous humanoids produced several well-known members of the Jedi Order
+                            during the time of the Galactic Republic.</span></div>
+                </li>
+            </ul>
 
             <footer>
                 <h5>Copyright &#169; 2020 UCSD Extension Talk Geeky To Me Gang</h5>
-                
+
 
 
     </div>
@@ -69,7 +142,8 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     <script>
 
         var translatedOutput;
@@ -104,7 +178,7 @@
                 else if (languageChoice === "Valyrian") {
                     ajaxtranslate("https://valyrian.p.rapidapi.com/valyrian.json?text=", userInput, "valyrian.p.rapidapi.com")
                 }
-                
+
 
 
                 function ajaxtranslate(queryURL, userInput, xhost) {
@@ -162,8 +236,16 @@
             });
 
             $(".twittersharelink").on("click", function () {
-                    $(".twittersharelink").attr("href", "https://twitter.com/intent/tweet?text=" + translatedOutput);
+                $(".twittersharelink").attr("href", "https://twitter.com/intent/tweet?text=" + translatedOutput);
             });
+
+            
+        $(document).ready(function () {
+            $('.dropdown-trigger').dropdown();
+        });
+        $(document).ready(function () {
+            $('.collapsible').collapsible();
+        });
 
         });
 
