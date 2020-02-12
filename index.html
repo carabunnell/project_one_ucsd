@@ -54,7 +54,7 @@
 
                
                 </article>
-                <img class="img-child" src="assets/images/child.png" alt="baby geeky child">
+                <img id=yodaImage class="img-child" src="assets/images/child.png" alt="baby geeky child">
             </div>
 
 
@@ -81,7 +81,11 @@
 
                 // ajaxtranslate("https://elvish.p.rapidapi.com/sindarin.json?text=", userInput, "elvish.p.rapidapi.com");
 
-                if (languageChoice === "Elvish") {
+                if (languageChoice === "Dothraki") {
+                    ajaxtranslate("https://dothraki.p.rapidapi.com/dothraki.json?text=", userInput, "dothraki.p.rapidapi.com");
+                }
+
+                else if (languageChoice === "Elvish") {
                     console.log("we did it!");
                     ajaxtranslate("https://elvish.p.rapidapi.com/sindarin.json?text=", userInput, "elvish.p.rapidapi.com");
                 }
@@ -156,8 +160,6 @@
                 }
 
             });
-
-         
 
             $(".twittersharelink").on("click", function () {
                     $(".twittersharelink").attr("href", "https://twitter.com/intent/tweet?text=" + translatedOutput);
